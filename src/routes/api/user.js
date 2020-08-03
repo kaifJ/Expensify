@@ -43,10 +43,6 @@ router.post('/', [
             name
         })
         
-        // user.password = await bcrypt.hash(password, salt)
-        
-        await user.save()
-
         const jwtPayload = {
             user:{
                 id: user.id
@@ -59,10 +55,12 @@ router.post('/', [
             { expiresIn: '8760d' },
             (err, token) => {
                 if(err) throw new err
-                res.json({ token })
+                user.tokens = user.tokens.concat({ token })
             }
         )
         
+        await user.save()
+        res.json({ token: user.tokens.slice(-1)[0].token }) 
     } catch (error) {
         console.log(error)
         res.status(500).send('Server error')

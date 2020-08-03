@@ -17,7 +17,6 @@ const router = express.Router()
 router.get('/', auth, async(req, res) => {
     try {
         const expenses = await Expense.find({ user: req.user.id })
-        console.log(expenses)
         res.send(expenses)
     } catch (error) {
         console.log(error)
@@ -45,7 +44,7 @@ router.post('/', [
     const { title, amount, category, description, date } = req.body
     try {
         const expense = new Expense({
-            user: auth.id,
+            user: req.user.id,
             title,
             description,
             date,

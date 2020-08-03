@@ -21,7 +21,7 @@ router.post('/', [
 
     const { email, password } = req.body
     try {
-        const user = User.findOne({email})
+        const user = await User.findOne({email})
         if(!user){
             res.status(400).send('Wrong Credentials')
         }
@@ -39,9 +39,12 @@ router.post('/', [
                 { expiresIn: '8760d' },
                 (err, token) => {
                     if(err) throw new Error(err)
-                    res.json({ token })
+                    user.tokens = user.tokens.concat({ token })
                 }
             )
+                
+            await user.save()
+            res.json({ token: user.tokens.slice(-1)[0].token }) 
         }else res.status(400).send('Wrong Credentials')
 
         return res

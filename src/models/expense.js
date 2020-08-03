@@ -6,11 +6,11 @@ const ExpenseSchema = new mongoose.Schema({
         ref: 'user'
     },
     title:{
-        type: "string",
+        type: String,
         required: true
     },
     description: {
-        type: 'string'
+        type: String
     },
     date: {
         type: Date,
@@ -21,7 +21,7 @@ const ExpenseSchema = new mongoose.Schema({
         required: true
     },
     category: {
-        type: "string",
+        type: String,
         required: true
     }
 })
