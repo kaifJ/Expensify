@@ -1,0 +1,5 @@
+{
+    "MongoURI": "mongodb+srv://kaif123:kaif123@expensify.bkwxc.mongodb.net/Expensify?retryWrites=true&w=majority",
+    "JSONwebtokenSecretKey": "appforallyourexpenses",
+    "salt": 10
+}
