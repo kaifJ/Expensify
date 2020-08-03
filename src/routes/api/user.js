@@ -32,7 +32,10 @@ router.post('/', [
             }]})
         }
         
-        const salt = await bcrypt.genSalt(10)
+        // const salt = await bcrypt.genSalt(10)
+        bcrypt.genSalt(config.get('salt')).then(async salt => {
+            password = await bcrypt.hash(password, salt)
+        })
 
         user = new User({
             email,
@@ -40,7 +43,7 @@ router.post('/', [
             name
         })
         
-        user.password = await bcrypt.hash(password, salt)
+        // user.password = await bcrypt.hash(password, salt)
         
         await user.save()
 

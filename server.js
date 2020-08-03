@@ -8,6 +8,8 @@ app.use(express.json({ extended: false }))
 connectDB()
 
 app.use('/api/user', require('./src/routes/api/user'))
+app.use('/api/auth', require('./src/routes/api/auth'))
+app.use('/api/expense', require('./src/routes/api/expense'))
 
 const PORT = process.env.PORT || 6000
 
