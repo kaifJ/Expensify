@@ -7,11 +7,6 @@ const { check, validationResult } = require('express-validator')
 
 const router = express.Router()
 
-//test route
-// router.get('/', (req,res) => {
-//     res.send('Hello There')
-// })
-
 /*
     Register User
     Post Method
