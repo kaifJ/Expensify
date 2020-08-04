@@ -110,4 +110,43 @@ router.post('/', [
     }
 })
 
+/*
+    Update Expense
+    Patch Method
+    Authentication required
+*/
+router.patch('/:id', auth, async(req, res) => {
+    let updatedValues = { title, description, category, amount, date } = req.body
+    try {
+        let expense = await Expense.findById(req.params.id)
+
+        for(let [field, value] of Object.entries(updatedValues)){
+            if(field === 'title' || field === 'category')
+                value = value.trim().toLowerCase()
+            expense[field] = value
+        }
+
+        await expense.save()
+       
+        res.send(expense)
+
+    } catch (error) {
+        res.status(500).json({errors: error, msg: 'Server Error'})
+    }
+})
+
+/*
+    Delete Expense
+    Delete Method
+    Authentication Required
+*/
+router.delete('/:id', auth, async(req, res) => {
+    try {
+        await Expense.findByIdAndDelete(req.params.id)
+        res.send('deleted')
+    } catch (error) {
+        res.status(500).json({errors: error, msg: 'Server Error'})
+    }
+})
+
 module.exports = router
