@@ -3,6 +3,7 @@ const config = require('config')
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const User = require('../../models/user')
+const auth = require('../../middleware/auth')
 const { check, validationResult } = require('express-validator')
 
 const router = express.Router()
@@ -32,16 +33,15 @@ router.post('/', [
             }]})
         }
         
-        // const salt = await bcrypt.genSalt(10)
-        bcrypt.genSalt(config.get('salt')).then(async salt => {
-            password = await bcrypt.hash(password, salt)
-        })
+        const salt = await bcrypt.genSalt(10)
 
         user = new User({
             email,
             password,
             name
         })
+
+        user.password = await bcrypt.hash(password, salt)
         
         const jwtPayload = {
             user:{
@@ -58,12 +58,25 @@ router.post('/', [
                 user.tokens = user.tokens.concat({ token })
             }
         )
-        
+        console.log(user)
         await user.save()
         res.json({ token: user.tokens.slice(-1)[0].token }) 
     } catch (error) {
         console.log(error)
         res.status(500).send('Server error')
+    }
+})
+
+/*
+    Sing Out
+    Post Method
+*/
+router.post('/logout', auth, async(req,res) => {
+    try {
+        let user = await User.findOneAndUpdate({_id: req.user.id}, {tokens: []}, { new: true })
+        res.send('Logged out')
+    } catch (error) {
+        res.status(500).json({errors: [error], msg: 'Server Error'})
     }
 })
 

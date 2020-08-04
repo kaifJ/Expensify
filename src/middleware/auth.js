@@ -11,8 +11,8 @@ module.exports = async function(req, res, next){
         }
 
         const decoded = await jwt.verify(token, config.get('JSONwebtokenSecretKey'))
-        const user = await User.findOne({id: decoded.id, 'tokens.token': token})
         
+        const user = await User.findOne({id: decoded.id, 'tokens.token': token})
         if(!user){
             return res.status(400).send('Authorization Denied')
         }

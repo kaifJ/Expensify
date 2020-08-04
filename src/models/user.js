@@ -25,10 +25,4 @@ const UserSchema = new mongoose.Schema({
     }]
 })
 
-UserSchema.virtual('expense', {
-    ref: 'Expense',
-    localField: '_id',
-    foreignField: 'user'
-})
-
 module.exports = User = mongoose.model('user', UserSchema)
