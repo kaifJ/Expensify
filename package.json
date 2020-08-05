@@ -30,5 +30,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-export-default-from": "^7.10.4"
   }
 }
