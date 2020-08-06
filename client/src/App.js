@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,19 +7,28 @@ import {
 import Navbar from './components/Navbar'
 import { Login, Register, PageNotFound } from './components/auth'
 import Dashboard from './components/Dashboard'
+import { Provider } from 'react-redux'
+import store from './store/store'
+import Alert from './components/Alert'
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <h1>Rect App</h1>
-      <Switch>
-        <Route exact path='/' component={Login} />
-        <Route exact path='/register' component={Register} />
-        <Route exact path='/dashboard' component={Dashboard} />
-        <Route component={PageNotFound} />
-      </Switch>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <Navbar />
+          <Fragment>
+          <Alert />
+          </Fragment>
+          <Switch>
+            <Route exact path='/' component={Login} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/dashboard' component={Dashboard} />
+            <Route component={PageNotFound} />
+          </Switch>
+        </Fragment>
+      </Router>
+    </Provider>
   );
 }
 

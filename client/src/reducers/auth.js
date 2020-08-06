@@ -1,9 +1,5 @@
 const initialState = {
-    'amount': null,
-    'title': null,
-    'description': null,
-    'date': null,
-    'category': null,
+    'isAuthenticated': false
 }
 
 export default function(state = initialState, action){
