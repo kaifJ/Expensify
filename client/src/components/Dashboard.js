@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux' 
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import ExpensesList from './ExpenseList'
 
-const Dashboard = ({isAuthenticated}) => {
-    debugger
-    if(!isAuthenticated){
-        return <Redirect to='/' />
-    }
+const Dashboard = (props) => {
 
     return (
-        <h1>Dashboard</h1>
+        <Fragment>
+            <h1>Dashboard</h1>
+            <div style={{backgroundColor: 'red'}}>
+                <p>Search Box(By default by title)</p>
+                <p>Date Filter</p>
+                <p>Category Filter select</p>
+            </div>
+            <div style={{backgroundColor: 'green'}}>
+                <p>Add new Expense</p>
+                <Link to='/addExpense'>Add Expense</Link>
+            </div>
+            <ExpensesList />
+        </Fragment>
     )
 }
 

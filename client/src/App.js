@@ -11,6 +11,8 @@ import { Provider } from 'react-redux'
 import store from './store/store'
 import Alert from './components/Alert'
 import setAuthToken from './utils/setAuthToken'
+import ExpenseForm from './components/ExpenseForm'
+import PrivateRoute from './components/routing/PrivateRoute'
 
 setAuthToken(localStorage.token)
 
@@ -26,7 +28,8 @@ function App() {
           <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/register' component={Register} />
-            <Route exact path='/dashboard' component={Dashboard} />
+            <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <PrivateRoute exact path='/addExpense' component={ExpenseForm} />
             <Route component={PageNotFound} />
           </Switch>
         </Fragment>

@@ -85,7 +85,8 @@ router.post('/', [
     auth,
     check('title', 'Title is required').not().isEmpty(),
     check('amount', 'Amount is required').not().isEmpty(),
-    check('category', 'Category is required').not().isEmpty()
+    check('category', 'Category is required').not().isEmpty(),
+    check('date', 'Date is required').not().isEmpty()
 ], async(req, res) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
@@ -99,12 +100,12 @@ router.post('/', [
             title: title.trim().toLowerCase(),
             description,
             date,
-            amount: amount.toFixed(2),
+            amount: parseFloat(amount).toFixed(2),
             category: category.trim().toLowerCase()
         })
-        
+
         await expense.save()
-        res.send(expense)
+        res.json({expense})
     } catch (error) {
         res.status(500).json({errors: error, msg: 'Server Error'})
     }
