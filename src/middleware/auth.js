@@ -3,6 +3,7 @@ const config = require('config')
 const User = require('../models/user')
 
 module.exports = async function(req, res, next){
+    console.log('here')
     const token = req.header('Authorization')
     
     try {

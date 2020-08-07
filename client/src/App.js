@@ -10,6 +10,9 @@ import Dashboard from './components/Dashboard'
 import { Provider } from 'react-redux'
 import store from './store/store'
 import Alert from './components/Alert'
+import setAuthToken from './utils/setAuthToken'
+
+setAuthToken(localStorage.token)
 
 function App() {
   return (

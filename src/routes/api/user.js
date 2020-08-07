@@ -28,9 +28,7 @@ router.post('/', [
         let user = await User.findOne({email})
 
         if(user){
-            return res.status(400).json({errors: [{
-                msg: 'User already exists'
-            }]})
+            return res.status(400).json({errors: ['Email Already Exists']})
         }
         
         const salt = await bcrypt.genSalt(10)
@@ -73,8 +71,9 @@ router.post('/', [
 */
 router.post('/logout', auth, async(req,res) => {
     try {
-        let user = await User.findOneAndUpdate({_id: req.user.id}, {tokens: []}, { new: true })
-        res.send('Logged out')
+        let updatedTokens = req.user.tokens.filter(token => token.token !== req.header('Authorization'))
+        await User.findOneAndUpdate({_id: req.user.id}, {tokens: updatedTokens}, { new: true })
+        res.send('Logged Out')
     } catch (error) {
         res.status(500).json({errors: [error], msg: 'Server Error'})
     }
