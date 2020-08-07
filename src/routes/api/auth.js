@@ -18,12 +18,12 @@ router.post('/', [
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
     }
-
+    
     const { email, password } = req.body
     try {
         const user = await User.findOne({email})
         if(!user){
-            res.status(400).send('Wrong Credentials')
+            return res.status(400).json({error: 'Wrong Credentials'})
         }
 
         if(bcrypt.compare(password, user.password)){
