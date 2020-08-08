@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,10 +13,16 @@ import Alert from './components/Alert'
 import setAuthToken from './utils/setAuthToken'
 import ExpenseForm from './components/ExpenseForm'
 import PrivateRoute from './components/routing/PrivateRoute'
+import { loadExpenses } from './actions/expense'
+import Stats from './components/Stats'
 
 setAuthToken(localStorage.token)
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadExpenses())
+  },[])
+
   return (
     <Provider store={store}>
       <Router>
@@ -29,7 +35,9 @@ function App() {
             <Route exact path='/' component={Login} />
             <Route exact path='/register' component={Register} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
-            <PrivateRoute exact path='/addExpense' component={ExpenseForm} />
+            <PrivateRoute exact path='/add' component={ExpenseForm} />
+            <PrivateRoute exact path='/edit/:id' component={ExpenseForm} />
+            <PrivateRoute exact path='/stats' component={Stats} />
             <Route component={PageNotFound} />
           </Switch>
         </Fragment>

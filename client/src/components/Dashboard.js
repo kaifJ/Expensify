@@ -1,10 +1,9 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux' 
+import React, { Fragment, useEffect, useState } from 'react'
+// import { connect } from 'react-redux' 
 import { Link } from 'react-router-dom'
 import ExpensesList from './ExpenseList'
 
-const Dashboard = (props) => {
-
+const Dashboard = () => {
     return (
         <Fragment>
             <h1>Dashboard</h1>
@@ -15,15 +14,11 @@ const Dashboard = (props) => {
             </div>
             <div style={{backgroundColor: 'green'}}>
                 <p>Add new Expense</p>
-                <Link to='/addExpense'>Add Expense</Link>
+                <Link to='/add'>Add Expense</Link>
             </div>
             <ExpensesList />
         </Fragment>
     )
 }
 
-const maptStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-})
-
-export default connect(maptStateToProps)(Dashboard)
+export default Dashboard

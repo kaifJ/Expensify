@@ -1,7 +1,10 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
+import { connect } from 'react-redux'
+import Expense from './Expense'
 
-const ExpenseList = () => {
-    let expenses = []
+const ExpenseList = props => {
+    
+    let expenses = props.expenses || []
     if(expenses.length === 0)
     return (
         <Fragment>
@@ -9,8 +12,12 @@ const ExpenseList = () => {
         </Fragment>
     )
     return (
-        <p>List Of expenses</p>
+        expenses.map(expense => <Expense key={expense._id} expense={expense}/>)
     )
 }
 
-export default ExpenseList
+const mapStateToProps = state => ({
+    expenses: state.expenses
+})
+
+export default connect(mapStateToProps)(ExpenseList)
