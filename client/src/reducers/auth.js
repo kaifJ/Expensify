@@ -5,6 +5,7 @@ import {
     REGISTER_SUCCESS, 
     LOGOUT 
 } from './types'
+import setAuthToken from '../utils/setAuthToken'
  
 const initialState = {
     isAuthenticated: !!localStorage.token,
@@ -17,6 +18,7 @@ export default function(state = initialState, action){
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
                 localStorage.setItem('token', action.payload.token)
+                setAuthToken(localStorage.token)
                 return {
                     ...state,
                     loading: false,

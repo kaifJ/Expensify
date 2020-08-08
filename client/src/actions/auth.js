@@ -6,6 +6,7 @@ import {
     REGISTER_SUCCESS
  } from '../reducers/types'
  import axios from 'axios'
+ import { loadExpenses } from '../actions/expense'
  import { setAlert } from './alert'
 
  export const register = ({name, email, password}) => async dispatch => {
@@ -50,6 +51,7 @@ import {
             type: LOGIN_SUCCESS,
             payload: {token: res.data.token}
         })
+        dispatch(loadExpenses())
      }catch(error){
          const errors = error.response.data.errors
          

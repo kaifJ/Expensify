@@ -20,7 +20,7 @@ setAuthToken(localStorage.token)
 
 function App() {
   useEffect(() => {
-    store.dispatch(loadExpenses())
+    localStorage.token && store.dispatch(loadExpenses())
   },[])
 
   return (

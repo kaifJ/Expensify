@@ -24,7 +24,7 @@ const ExpenseForm = props => {
         description: '',
         amount: '',
         category: '',
-        date: moment(new Date).format('YYYY-DD-MM')
+        date: moment(new Date()).format('YYYY-MM-DD')
     })
 
     let { title, description, amount, category, date } = formData

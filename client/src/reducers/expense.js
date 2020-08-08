@@ -10,7 +10,6 @@ const initialState = []
 export default function(state = initialState, action){
     switch(action.type){
         case EDIT_EXPENSE_SUCCESS:
-            
             let updatedExpenses =  state.map(expense => {
                 if(expense._id === action.payload.expense._id){
                     return action.payload.expense
