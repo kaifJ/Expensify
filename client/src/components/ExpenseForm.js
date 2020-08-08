@@ -1,22 +1,40 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { addExpense } from '../actions/expense'
+import * as moment from 'moment'
+import { addExpense, editExpense } from '../actions/expense'
 
-const ExpenseForm = ({ addExpense, history }) => {
-    const [formData, setFormData] = useState({
-        title:'',
+const ExpenseForm = props => {
+    let { addExpense, editExpense, history, expense } = props
+
+    useEffect(() => {
+      if(expense){
+        setFormData({
+          ...formData,
+          title: expense.title,
+          description: expense.description,
+          amount: expense.amount,
+          category: expense.category,
+          date: moment(expense.date).format('YYYY-DD-MM')
+        })
+      }
+    },[expense])
+    
+    let [formData, setFormData] = useState({
+        title: '',
         description: '',
-        amount:'',
-        category:'',
-        date: new Date()
+        amount: '',
+        category: '',
+        date: moment(new Date).format('YYYY-DD-MM')
     })
 
     let { title, description, amount, category, date } = formData
+    let formType = props.match.url.includes('add') ? 'Add Expense': 'Update Expense'
 
     let onSubmit = e => {
         e.preventDefault()
-        debugger
-        addExpense({title, description, amount, category, date}, history)
+        props.match.url.includes('add') ?
+         addExpense({title, description, amount, category, date}, history) :
+         editExpense({title, description, amount, category, date}, expense._id, history)
     }
 
     let onChange = e => {
@@ -60,7 +78,7 @@ const ExpenseForm = ({ addExpense, history }) => {
          </div>
          <div>
             <label>Category</label>
-            <select name="category" id="category" onChange={e => onChange(e)}>
+            <select name="category" id="category" value={category || ''} onChange={e => onChange(e)} >
                 <option value="">--Please choose an option--</option>
                 <option value="food">Food</option>
                 <option value="social">Social Life</option>
@@ -86,10 +104,17 @@ const ExpenseForm = ({ addExpense, history }) => {
              onChange={e => onChange(e)}
            />
          </div>
-         <input type="submit" value="Add Expeonse" />
+         <input type="submit" value={`${formType}`} />
        </form>
      </Fragment>
     )
 }
 
-export default connect(null, { addExpense })(ExpenseForm)
+const maptStateToProps = (state, props) => {
+  
+  return {
+    expense: state.expenses.length > 0 && state.expenses.find(expense => expense._id === props.match.params.id)
+  }
+}
+
+export default connect(maptStateToProps, { addExpense, editExpense })(ExpenseForm)
