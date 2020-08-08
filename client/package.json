@@ -9,6 +9,8 @@
     "axios": "^0.19.2",
     "moment": "^2.27.0",
     "react": "^16.13.1",
+    "react-addons-shallow-compare": "^15.6.2",
+    "react-dates": "^21.8.0",
     "react-dom": "^16.13.1",
     "react-moment": "^0.9.7",
     "react-redux": "^7.2.1",

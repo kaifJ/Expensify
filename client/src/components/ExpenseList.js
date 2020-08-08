@@ -12,7 +12,10 @@ const ExpenseList = props => {
         </Fragment>
     )
     return (
-        expenses.map(expense => <Expense key={expense._id} expense={expense}/>)
+        <div style={{ height: '500px', overflowY: 'scroll' }}>
+            {expenses.map(expense => <Expense key={expense._id} expense={expense}/>)}
+        </div>      
+        
     )
 }
 

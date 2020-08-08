@@ -1,6 +1,7 @@
 import { ADDEXPENSE_SUCCESS, LOAD_EXPENSE_SUCCESS, DELETE_EXPENSE_SUCCESS, EDIT_EXPENSE_SUCCESS }  from '../reducers/types'
 import { setAlert } from '../actions/alert'
 import axios from 'axios'
+import * as moment from 'moment'
 
 export const editExpense = (updatedExpense, id, history) => async dispatch => {
     try {
@@ -67,8 +68,11 @@ export const deleteExpense = (id) => async dispatch => {
 
 export const loadExpenses = () => async dispatch => {
     try{
-        
-        let res = await axios.get('/api/expense')
+        const params = {
+            year: moment().year(),
+            month: moment().month()
+        }
+        let res = await axios.get('/api/expense', {params})
         
         dispatch({
             type: LOAD_EXPENSE_SUCCESS,

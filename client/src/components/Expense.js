@@ -12,11 +12,10 @@ const Expense = (props) => {
 
     return (
        <div style={{backgroundColor: ' #add8e6'}}>
-        <p>{props.expense.title}</p>
         <p>{props.expense.description}</p>
         <p>{props.expense.amount}</p>
         <p>{props.expense.category}</p>
-        <p>{moment(props.expense.date).format('YYYY-DD-MM')}</p>
+        <p>{moment(props.expense.date).format('ddd MMM DD YYYY')}</p>
         <button onClick={() => deleteExpense(props.expense._id)}>Delete Expense</button>
         <Link to={`/edit/${props.expense._id}`}>Edit Expense</Link>
        </div>

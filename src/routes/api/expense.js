@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const config = require('config')
 const express = require('express')
 const jwt = require('jsonwebtoken')
+const moment = require('moment')
 const User = require('../../models/user')
 const auth = require('../../middleware/auth')
 const Expense = require('../../models/expense')
@@ -16,10 +17,21 @@ const router = express.Router()
 */
 router.get('/', auth, async(req, res) => {
     const queries = req.query
+    let filter = {
+        user: req.user.id
+    }
+    if(Object.keys(queries).length){
+        let startDate = moment([queries.year, queries.month]).format()
+        let endDate = moment(startDate).endOf('month').format()
+        filter = Object.assign(filter,{
+            date: {
+                $gte: startDate,
+                $lte: endDate
+            }
+        })
+    }
     try {
-        const expenses = await Expense.find({user: req.user.id}).setOptions({
-            limit: queries.limit || 10, 
-            skip: queries.skip || 0, 
+        const expenses = await Expense.find(filter).setOptions({
             sort:{
                 'date': -1
             }
@@ -39,42 +51,42 @@ router.get('/', auth, async(req, res) => {
     Required Authentication
     /search?title= &category= &minAmount= &maxAmount= &month=
 */
-router.get('/search', auth, async(req, res) => {
-    try {
-        let filter = { user: req.user.id }
-        for(let [field,value] of Object.entries(req.query)){
-            if(field === 'limit' || field === 'skip') continue
+// router.get('/search', auth, async(req, res) => {
+//     try {
+//         let filter = { user: req.user.id }
+//         for(let [field,value] of Object.entries(req.query)){
+//             if(field === 'limit' || field === 'skip') continue
 
-            if (field === 'minAmount' || field === 'maxAmount') {
-                filter = filter.hasOwnProperty('amount')
-                  ? filter
-                  : Object.assign(filter, {
-                      amount: {
-                        $gte: req.query['minAmount'] || 0,
-                        $lte: req.query['maxAmount'] || 1000000000000000000
-                      }
-                    })
-            }else if(field === 'month'){
-                // Have Think about this. See how the input is given from the component
-                continue
-            }else{
-                filter = Object.assign(filter, {
-                    [field]: value
-                })
-            }
+//             if (field === 'minAmount' || field === 'maxAmount') {
+//                 filter = filter.hasOwnProperty('amount')
+//                   ? filter
+//                   : Object.assign(filter, {
+//                       amount: {
+//                         $gte: req.query['minAmount'] || 0,
+//                         $lte: req.query['maxAmount'] || 1000000000000000000
+//                       }
+//                     })
+//             }else if(field === 'month'){
+//                 // Have Think about this. See how the input is given from the component
+//                 continue
+//             }else{
+//                 filter = Object.assign(filter, {
+//                     [field]: value
+//                 })
+//             }
              
-        }
+//         }
         
-        let expenses = await Expense.find(filter).setOptions({
-            limit: req.query.limit || 10, 
-            skip: req.query.skip || 0
-        })
+//         let expenses = await Expense.find(filter).setOptions({
+//             limit: req.query.limit || 10, 
+//             skip: req.query.skip || 0
+//         })
         
-        res.send(expenses)
-    } catch (error) {
-        res.status(500).json({errors:[error], msg:'Server Error'})
-    }
-})
+//         res.send(expenses)
+//     } catch (error) {
+//         res.status(500).json({errors:[error], msg:'Server Error'})
+//     }
+// })
 
 /*
     Post expense
@@ -83,7 +95,6 @@ router.get('/search', auth, async(req, res) => {
 */
 router.post('/', [
     auth,
-    check('title', 'Title is required').not().isEmpty(),
     check('amount', 'Amount is required').not().isEmpty(),
     check('category', 'Category is required').not().isEmpty(),
     check('date', 'Date is required').not().isEmpty()

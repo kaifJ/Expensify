@@ -6,15 +6,13 @@ const ExpenseSchema = new mongoose.Schema({
         ref: 'user'
     },
     title:{
-        type: String,
-        required: true
+        type: String
     },
     description: {
         type: String
     },
     date: {
         type: Date,
-        default: Date.now,
         required: true
     },
     amount: {
