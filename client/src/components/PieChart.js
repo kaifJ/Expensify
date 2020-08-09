@@ -4,9 +4,18 @@ var CanvasJS = CanvasJSReact.CanvasJS
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
 const PieChart = props => {
+    let dataPoints = []
+
+    for(let [key, percent] of Object.entries(props.categories)){
+        dataPoints.push({
+            label: key.toUpperCase(),
+            y: percent
+        })
+    }
+    
     const options = {
         title: {
-          text: "Basic Column Chart in React"
+          text: "Expenses For The Month"
         },
         data: [{				
             type: "pie",
@@ -16,13 +25,7 @@ const PieChart = props => {
             legendText: "{label}",
             indexLabelFontSize: 16,
             indexLabel: "{label} - {y}%",
-            dataPoints: [
-                { label: "Apple",  y: 10  },
-                { label: "Orange", y: 15  },
-                { label: "Banana", y: 25  },
-                { label: "Mango",  y: 30  },
-                { label: "Grape",  y: 28  }
-            ]
+            dataPoints
          }]
      }
     return (

@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import DatePicker from "react-datepicker"
 import * as moment from 'moment'
 import { connect } from 'react-redux'
-import { loadExpenses } from '../actions/expense'
+import { loadMonthlyExpenses } from '../actions/expense'
 import { sortFilters, searchFilters, resetFilters } from '../actions/filters'
 import "react-datepicker/dist/react-datepicker.css"
 
 const FilterComponent = (props) => {
-    const [startDate, setStartDate] = useState(new Date())
+    const [startDate, setStartDate] = useState(new Date(props.date))
     const [filterState, setFilterState] = useState({
         searchText: '',
         searchBy: '',
@@ -18,7 +18,7 @@ const FilterComponent = (props) => {
     let { searchText, searchBy, selectedCategoryValue } = filterState
 
     let onChangeDate = date => {
-        props.loadExpenses({
+        props.loadMonthlyExpenses({
             year: moment(date).year(), 
             month: moment(date).month()
         })
@@ -104,19 +104,19 @@ const FilterComponent = (props) => {
                                         })
                                     }}
                                 >
-                                <option value="">--Please choose an option--</option>
-                                <option value="food">Food</option>
-                                <option value="social">Social Life</option>
-                                <option value="self">Self Development</option>
-                                <option value="transportation">Transportation</option>
-                                <option value="culture">Culture</option>
-                                <option value="household">Household</option>
-                                <option value="apparel">Apparel</option>
-                                <option value="beauty">Beauty</option>
-                                <option value="health">Health</option>
-                                <option value="education">Education</option>
-                                <option value="gift">Gift</option>
-                                <option value="other">Other</option>
+                                    <option value="">--Please choose an option--</option>
+                                    <option value="food">FOOD</option>
+                                    <option value="social">SOCIAL</option>
+                                    <option value="self">SELF</option>
+                                    <option value="transportation">TRANSPORTATION</option>
+                                    <option value="culture">CULTURE</option>
+                                    <option value="household">HOUSEHOLD</option>
+                                    <option value="apparel">APPAREL</option>
+                                    <option value="beauty">BEAUTY</option>
+                                    <option value="health">HEALTH</option>
+                                    <option value="education">EDUCATION</option>
+                                    <option value="gift">GIFT</option>
+                                    <option value="other">OTHER</option>
                                 </select>
                             </div>
                         )
@@ -146,7 +146,8 @@ const FilterComponent = (props) => {
 }
 
 const maptStateToProps = state => ({
-    filters: state.filters
+    filters: state.filters,
+    date: state.expenses.length > 0 ? moment(state.expenses[0].date) : moment()
 })
 
-export default connect(maptStateToProps, { loadExpenses, sortFilters, searchFilters, resetFilters })(FilterComponent)
+export default connect(maptStateToProps, { loadMonthlyExpenses, sortFilters, searchFilters, resetFilters })(FilterComponent)

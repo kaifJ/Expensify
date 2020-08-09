@@ -56,7 +56,7 @@ router.post('/', [
                 user.tokens = user.tokens.concat({ token })
             }
         )
-        console.log(user)
+
         await user.save()
         res.json({ token: user.tokens.slice(-1)[0].token }) 
     } catch (error) {

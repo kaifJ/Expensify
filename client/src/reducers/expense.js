@@ -2,7 +2,8 @@ import {
     ADDEXPENSE_SUCCESS, 
     LOAD_EXPENSE_SUCCESS, 
     DELETE_EXPENSE_SUCCESS,
-    EDIT_EXPENSE_SUCCESS
+    EDIT_EXPENSE_SUCCESS,
+    LOAD_MONTHLY_EXPENSES
 }  from '../reducers/types'
 import * as moment from 'moment'
 
@@ -23,6 +24,9 @@ export default function(state = initialState, action){
             return state.filter(expense => expense._id !== action.payload.id)
 
         case LOAD_EXPENSE_SUCCESS:
+            return [...action.payload.expenses]
+
+        case LOAD_MONTHLY_EXPENSES:
             return [...action.payload.expenses]
 
         case ADDEXPENSE_SUCCESS: 

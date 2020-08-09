@@ -13,7 +13,7 @@ class ExpenseForm extends React.Component{
     this.state = {
       title: props.expense?.title || '',
       description: props.expense?.description || '',
-      category: props.expense?.category || '',
+      category: (props.expense && props.expense.category.toLocaleLowerCase()) || '',
       amount: props.expense?.amount || '',
       date: props.expense ? moment(props.expense.date) : moment(),
       calandarFocused: false
@@ -85,18 +85,18 @@ class ExpenseForm extends React.Component{
           }
         >
           <option value="">--Please choose an option--</option>
-          <option value="food">Food</option>
-          <option value="social">Social Life</option>
-          <option value="self">Self Development</option>
-          <option value="transportation">Transportation</option>
-          <option value="culture">Culture</option>
-          <option value="household">Household</option>
-          <option value="apparel">Apparel</option>
-          <option value="beauty">Beauty</option>
-          <option value="health">Health</option>
-          <option value="education">Education</option>
-          <option value="gift">Gift</option>
-          <option value="other">Other</option>
+          <option value="food">FOOD</option>
+          <option value="social">SOCIAL</option>
+          <option value="self">SELF</option>
+          <option value="transportation">TRANSPORTATION</option>
+          <option value="culture">CULTURE</option>
+          <option value="household">HOUSEHOLD</option>
+          <option value="apparel">APPAREL</option>
+          <option value="beauty">BEAUTY</option>
+          <option value="health">HEALTH</option>
+          <option value="education">EDUCATION</option>
+          <option value="gift">GIFT</option>
+          <option value="other">OTHER</option>
         </select>
       </div>
       <div>

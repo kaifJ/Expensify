@@ -77,7 +77,7 @@ router.post('/', [
             description,
             date,
             amount: parseFloat(amount).toFixed(2),
-            category: category.trim().toLowerCase()
+            category: category.toUpperCase()
         })
 
         await expense.save()
@@ -98,8 +98,8 @@ router.patch('/:id', auth, async(req, res) => {
         let expense = await Expense.findById(req.params.id)
         
         for(let [field, value] of Object.entries(updatedValues)){
-            if(field === 'title' || field === 'category')
-                value = value.trim().toLowerCase()
+            if(field === 'category')
+                value = value.toUpperCase()
             expense[field] = value
         }
     
