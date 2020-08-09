@@ -1,4 +1,9 @@
-import { ADDEXPENSE_SUCCESS, LOAD_EXPENSE_SUCCESS, DELETE_EXPENSE_SUCCESS, EDIT_EXPENSE_SUCCESS }  from '../reducers/types'
+import { 
+    ADDEXPENSE_SUCCESS, 
+    LOAD_EXPENSE_SUCCESS, 
+    DELETE_EXPENSE_SUCCESS, 
+    EDIT_EXPENSE_SUCCESS 
+}  from '../reducers/types'
 import { setAlert } from '../actions/alert'
 import axios from 'axios'
 import * as moment from 'moment'
@@ -61,16 +66,15 @@ export const deleteExpense = (id) => async dispatch => {
             payload: {id}
         })
     } catch (error) {
-        let errors = error.response.data.msg
         dispatch(setAlert('Some Error Look Into this', 'danger'))
     }
 }
 
-export const loadExpenses = () => async dispatch => {
+export const loadExpenses = (payload) => async dispatch => {
     try{
         const params = {
-            year: moment().year(),
-            month: moment().month()
+            year: (payload && payload.year !== undefined) ? payload.year: moment().year(),
+            month: (payload && payload.month !== undefined) ? payload.month: moment().month()
         }
         let res = await axios.get('/api/expense', {params})
         

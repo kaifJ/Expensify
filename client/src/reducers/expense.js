@@ -4,6 +4,7 @@ import {
     DELETE_EXPENSE_SUCCESS,
     EDIT_EXPENSE_SUCCESS
 }  from '../reducers/types'
+import * as moment from 'moment'
 
 const initialState = []
 
@@ -22,11 +23,12 @@ export default function(state = initialState, action){
             return state.filter(expense => expense._id !== action.payload.id)
 
         case LOAD_EXPENSE_SUCCESS:
-            return [...state, ...action.payload.expenses]
+            return [...action.payload.expenses]
 
         case ADDEXPENSE_SUCCESS: 
             let expenses = [...state]
-            expenses.unshift({...action.payload.expense})
+            if(moment().month() === moment(action.payload.expense.date))
+                expenses.unshift({...action.payload.expense})
             return expenses
 
         default: return state

@@ -6,7 +6,7 @@ import expenseReducer from './expense'
 
 export default combineReducers({
     auth: authReducer,
-    filter: filterReducer,
+    filters: filterReducer,
     alert: alertReducer,
     expenses: expenseReducer
 })

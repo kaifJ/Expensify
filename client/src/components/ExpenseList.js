@@ -1,9 +1,9 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Expense from './Expense'
+import expensesFilter from '../components/Selectors/expensesFilter'
 
 const ExpenseList = props => {
-    
     let expenses = props.expenses || []
     if(expenses.length === 0)
     return (
@@ -20,7 +20,7 @@ const ExpenseList = props => {
 }
 
 const mapStateToProps = state => ({
-    expenses: state.expenses
+    expenses: expensesFilter(state.expenses, state.filters)
 })
 
 export default connect(mapStateToProps)(ExpenseList)

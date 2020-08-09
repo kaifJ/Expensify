@@ -51,42 +51,7 @@ router.get('/', auth, async(req, res) => {
     Required Authentication
     /search?title= &category= &minAmount= &maxAmount= &month=
 */
-// router.get('/search', auth, async(req, res) => {
-//     try {
-//         let filter = { user: req.user.id }
-//         for(let [field,value] of Object.entries(req.query)){
-//             if(field === 'limit' || field === 'skip') continue
-
-//             if (field === 'minAmount' || field === 'maxAmount') {
-//                 filter = filter.hasOwnProperty('amount')
-//                   ? filter
-//                   : Object.assign(filter, {
-//                       amount: {
-//                         $gte: req.query['minAmount'] || 0,
-//                         $lte: req.query['maxAmount'] || 1000000000000000000
-//                       }
-//                     })
-//             }else if(field === 'month'){
-//                 // Have Think about this. See how the input is given from the component
-//                 continue
-//             }else{
-//                 filter = Object.assign(filter, {
-//                     [field]: value
-//                 })
-//             }
-             
-//         }
-        
-//         let expenses = await Expense.find(filter).setOptions({
-//             limit: req.query.limit || 10, 
-//             skip: req.query.skip || 0
-//         })
-        
-//         res.send(expenses)
-//     } catch (error) {
-//         res.status(500).json({errors:[error], msg:'Server Error'})
-//     }
-// })
+//  
 
 /*
     Post expense
@@ -108,7 +73,7 @@ router.post('/', [
     try {
         const expense = new Expense({
             user: req.user.id,
-            title: title.trim().toLowerCase(),
+            title: title,
             description,
             date,
             amount: parseFloat(amount).toFixed(2),
