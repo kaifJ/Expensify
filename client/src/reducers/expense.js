@@ -27,8 +27,10 @@ export default function(state = initialState, action){
 
         case ADDEXPENSE_SUCCESS: 
             let expenses = [...state]
-            if(moment().month() === moment(action.payload.expense.date))
+            debugger
+            if(moment().month() === moment(action.payload.expense.date).month())
                 expenses.unshift({...action.payload.expense})
+            debugger
             return expenses
 
         default: return state

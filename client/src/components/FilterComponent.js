@@ -90,12 +90,13 @@ const FilterComponent = (props) => {
                     {
                         searchBy === 'category' && (
                             <div>
+                                <label>Select Category</label>
                                 <select
                                     name="category"
                                     id="category"
                                     value={selectedCategoryValue}
+                                    required
                                     onChange={e => {
-                                        
                                         setFilterState({
                                             ...filterState,
                                             'searchText': e.target.options[e.target.selectedIndex].text,
