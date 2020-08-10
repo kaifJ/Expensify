@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { login } from '../../actions/auth'
+import Alert from '../Alert'
 
 const Login = ({isAuthenticated, login}) =>{
     const [formData, setFormData] = useState({
@@ -23,31 +24,44 @@ const Login = ({isAuthenticated, login}) =>{
     let onChange = e => setFormData({...formData, [e.target.name]: e.target.value})
    
     return (
-        <Fragment>
-        <form onSubmit={e => onSubmit(e)}>
+        <div className="box-layout">
          <div>
-           <input
-             type="email"
-             placeholder="Email Address"
-             name="email"
-             required
-             value={email}
-             onChange={e => onChange(e)}
-           />
+          <Alert />
+          <div className="box-layout__box">
+            <form onSubmit={e => onSubmit(e)}>
+              <div>
+                <label className="required">*</label>
+                <input
+                  className="form-input"
+                  type="email"
+                  placeholder="Email Address"
+                  name="email"
+                  required
+                  value={email}
+                  onChange={e => onChange(e)}
+                />
+              </div>
+              <div>
+                <label className="required">*</label>
+                <input
+                  className="form-input"
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  required
+                  value={password}
+                  onChange={e => onChange(e)}
+                />
+              </div>
+              <input className="form-button" type="submit" value="Login" />
+            </form>
+            <div>
+              <label>Don't have an Account? </label>
+              <Link to='/register'>Register</Link>
+            </div>
+          </div>
          </div>
-         <div>
-           <input
-             type="password"
-             placeholder="Password"
-             name="password"
-             required
-             value={password}
-             onChange={e => onChange(e)}
-           />
-         </div>
-         <input type="submit" value="Login" />
-       </form>
-     </Fragment>
+      </div>
     )
 }
 

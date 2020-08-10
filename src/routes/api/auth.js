@@ -21,12 +21,14 @@ router.post('/', [
     
     const { email, password } = req.body
     try {
+    
         const user = await User.findOne({email})
         if(!user){
             return res.status(400).json({errors: ['Wrong Credentials']})
         }
-
-        if(bcrypt.compare(password, user.password)){
+        let passwordsMatch = await bcrypt.compare(password, user.password)
+        
+        if(passwordsMatch){
             const jwtPayload = {
                 user:{
                     id: user.id

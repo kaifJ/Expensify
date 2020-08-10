@@ -53,9 +53,8 @@ import {
         })
         dispatch(loadExpenses())
      }catch(error){
-         const errors = error.response.data.errors
-         
-         errors.forEach(error => dispatch(setAlert(error, 'danger')))
+         const errorMsg = error.response.data
+         dispatch(setAlert(errorMsg, 'danger'))
          
          dispatch({
              type: LOGIN_FAILURE

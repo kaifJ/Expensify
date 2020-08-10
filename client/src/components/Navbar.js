@@ -10,37 +10,31 @@ const Navbar = ({isAuthenticated, logout}) => {
 
     const authLinks = (
         <Fragment>
-            <ul>
-                <li>
-                    <Link to='/dashboard'>Expensify</Link>
-                </li>
-                <li>
-                    <Link to='/stats'>Stats</Link>
-                </li>
-                <li>
-                    <a onClick={logoutUser} href='/'>LogOut</a>
-                </li>
-            </ul>
+            <Link to='/stats' style={{textDecoration: 'none'}}>
+                <span className="navbar-link">Stats</span>
+            </Link>
+            <a onClick={logoutUser} href='/'>LogOut</a>
         </Fragment> 
       )
     
       const guestLinks = (
         <Fragment>
-            <ul>
-                <li>
-                    <Link to='/register'>Register</Link>
-                </li>
-                <li>
-                    <Link to='/'>Login</Link>
-                </li>
-            </ul>
+            <Link to='/register' style={{textDecoration: 'none'}}>
+                <span className="navbar-link">Register</span>
+                
+            </Link>
+            <Link to='/' style={{textDecoration: 'none'}}>
+                <span className="navbar-link">Login</span>
+            </Link>
         </Fragment>
       );
     return (
-        <Fragment style={{backgroundColor: 'red'}}>
-            <h2>Expensify</h2>
+        <div className="navbar-box">
+            <Link to='/dashboard' style={{textDecoration: 'none'}}>
+                <span className="navbar-link">Expensify</span>
+            </Link>
             {isAuthenticated ? authLinks: guestLinks}
-        </Fragment>
+        </div>
     )
 }
 

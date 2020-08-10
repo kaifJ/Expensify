@@ -1,15 +1,15 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import { connect } from 'react-redux'
 
 const Alert = (props) => {
     return (
-        <div>
+        <Fragment>
             {props.alerts.map(alert => (
-                <div>
-                    <p>{alert.msg}</p>
+                <div className={`alert-${alert.alertType}`}>
+                    <label>{alert.msg}</label>
                 </div>
             ))}
-        </div>
+        </Fragment>
     )
 }
 
