@@ -24,7 +24,7 @@ router.post('/', [
     
         const user = await User.findOne({email})
         if(!user){
-            return res.status(400).json({errors: ['Wrong Credentials']})
+            return res.status(400).send('Wrong Credentials')
         }
         let passwordsMatch = await bcrypt.compare(password, user.password)
         

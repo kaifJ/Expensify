@@ -25,7 +25,7 @@ const Login = ({isAuthenticated, login}) =>{
    
     return (
         <div className="box-layout">
-         <div>
+         <div className="horizontal-box">
           <Alert />
           <div className="box-layout__box">
             <form onSubmit={e => onSubmit(e)}>

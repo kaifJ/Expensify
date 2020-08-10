@@ -2,11 +2,26 @@
     background: #20222b;
     color: $white;
     height: 10vh;
-    padding-top: 3.2rem;
-    width: 100vw;
+    padding-top: $l-size;
+    width: 100vw
+}
+
+.navbar-link__expensify{
+    color: $white;
+    font-size: $l-size;
 }
 
 .navbar-link{
     color: $white;
     font-size: $l-size;
+    float: right;
+    padding-right: $m-size;
+}
+
+.navbar-link__anchor{
+    color: $white;
+    font-size: $l-size;
+    float: right;
+    padding-right: $m-size;
+    text-decoration: none;
 }

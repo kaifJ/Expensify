@@ -10,10 +10,10 @@ const Navbar = ({isAuthenticated, logout}) => {
 
     const authLinks = (
         <Fragment>
+            <a className="navbar-link__anchor" onClick={logoutUser} href='/'>Logout</a>
             <Link to='/stats' style={{textDecoration: 'none'}}>
                 <span className="navbar-link">Stats</span>
             </Link>
-            <a onClick={logoutUser} href='/'>LogOut</a>
         </Fragment> 
       )
     
@@ -31,7 +31,7 @@ const Navbar = ({isAuthenticated, logout}) => {
     return (
         <div className="navbar-box">
             <Link to='/dashboard' style={{textDecoration: 'none'}}>
-                <span className="navbar-link">Expensify</span>
+                <span className="navbar-link__expensify">Expensify</span>
             </Link>
             {isAuthenticated ? authLinks: guestLinks}
         </div>

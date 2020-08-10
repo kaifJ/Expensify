@@ -28,7 +28,7 @@ router.post('/', [
         let user = await User.findOne({email})
 
         if(user){
-            return res.status(400).json({errors: ['Email Already Exists']})
+            return res.status(400).send('Email Already Exists')
         }
         
         const salt = await bcrypt.genSalt(10)

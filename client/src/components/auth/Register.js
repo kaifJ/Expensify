@@ -3,6 +3,7 @@ import { setAlert } from '../../actions/alert'
 import { register } from '../../actions/auth'
 import { connect } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
+import Alert from '../Alert'
 
 const Register = ({isAuthenticated, setAlert, register}) => {
     const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const Register = ({isAuthenticated, setAlert, register}) => {
     let onSubmit = e => {
         e.preventDefault()
         if(password1 !== password)
-          setAlert('Passwords Don\'t match')
+          setAlert('Passwords Don\'t match', 'danger')
         else register({name, email, password})
     }
 
@@ -32,7 +33,9 @@ const Register = ({isAuthenticated, setAlert, register}) => {
 
     return (
         <div className="box-layout">
-          <div className="box-layout__box">
+        <div className="horizontal-box">
+        <Alert />
+         <div className="box-layout__box">
             <form onSubmit={e => onSubmit(e)}>
               <div>
               <label className="required">*</label>
@@ -89,6 +92,7 @@ const Register = ({isAuthenticated, setAlert, register}) => {
               <Link to='/'>Login</Link>
             </div>
           </div>
+        </div>
         </div>
     )
 }
