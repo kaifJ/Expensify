@@ -32,7 +32,7 @@ export const editExpense = (updatedExpense, id, history) => async dispatch => {
     }
 }
 
-export const addExpense = ({ title, description, amount, category, date }, history) => async dispatch => {
+export const addExpense = ({ title, description, amount, category, date }, history, selectedDate) => async dispatch => {
     
     const config = {
         headers: {
@@ -47,7 +47,7 @@ export const addExpense = ({ title, description, amount, category, date }, histo
         
         dispatch({
             type: ADDEXPENSE_SUCCESS,
-            payload: { expense: res.data.expense}
+            payload: { expense: res.data.expense , selectedDate}
         })
         history.push('/dashboard')
         dispatch(setAlert('Expense Added', 'success'))

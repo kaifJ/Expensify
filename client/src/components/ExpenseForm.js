@@ -32,7 +32,7 @@ class ExpenseForm extends React.Component{
     }
     
     this.props.match.url.includes('add') ?
-      this.props.addExpense(formData, this.props.history) :
+      this.props.addExpense(formData, this.props.history, this.props.selectedDate) :
       this.props.editExpense(formData, this.props.expense._id, this.props.history)
   }
 
@@ -119,7 +119,8 @@ class ExpenseForm extends React.Component{
 
 const maptStateToProps = (state, props) => {
   return {
-    expense: state.expenses.length > 0 && state.expenses.find(expense => expense._id === props.match.params.id)
+    expense: state.expenses.length > 0 && state.expenses.find(expense => expense._id === props.match.params.id),
+    selectedDate: state.filters.selectedDate
   }
 }
 

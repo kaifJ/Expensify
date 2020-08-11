@@ -9,16 +9,16 @@ const Navbar = ({isAuthenticated, logout}) => {
     }
 
     const authLinks = (
-        <Fragment>
+        <div>
             <a className="navbar-link__anchor" onClick={logoutUser} href='/'>Logout</a>
             <Link to='/stats' style={{textDecoration: 'none'}}>
                 <span className="navbar-link">Stats</span>
             </Link>
-        </Fragment> 
+        </div> 
       )
     
       const guestLinks = (
-        <Fragment>
+        <div>
             <Link to='/register' style={{textDecoration: 'none'}}>
                 <span className="navbar-link">Register</span>
                 
@@ -26,14 +26,18 @@ const Navbar = ({isAuthenticated, logout}) => {
             <Link to='/' style={{textDecoration: 'none'}}>
                 <span className="navbar-link">Login</span>
             </Link>
-        </Fragment>
+        </div>
       );
     return (
         <div className="navbar-box">
-            <Link to='/dashboard' style={{textDecoration: 'none'}}>
-                <span className="navbar-link__expensify">Expensify</span>
-            </Link>
-            {isAuthenticated ? authLinks: guestLinks}
+            <div className="navbar-box__content_header">
+                <div className="navbar-box__content">
+                <Link to='/dashboard' style={{textDecoration: 'none'}}>
+                 <span className="navbar-link__expensify">Expensify</span>
+                </Link>
+                {isAuthenticated ? authLinks: guestLinks}
+                </div>
+            </div>
         </div>
     )
 }

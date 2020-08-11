@@ -2,12 +2,25 @@
     background: #20222b;
     color: $white;
     height: 10vh;
+    width: 100vw;
     padding-top: $l-size;
-    width: 100vw
+    margin: 0 auto;
+}
+
+.navbar-box__content{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: $s-size 0;
+}
+
+.navbar-box__content_header{
+    margin: 0 auto;
+    padding: 0 $m-size;
+    max-width: 80rem;
 }
 
 .navbar-link__expensify{
-    padding-left: $s-size;
     color: $white;
     font-size: $l-size;
     &:hover {
@@ -20,7 +33,7 @@
     color: $white;
     font-size: $l-size;
     float: right;
-    padding-right: $m-size;
+    padding-right: $xs-size;
     &:hover {
         color: $hover-color;
         cursor: pointer;

@@ -1,0 +1,23 @@
+.expense-item{
+    width: 100vw;
+}
+
+.expense-item__box{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: $xs-size;
+}
+
+.expense-item__action__buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.expense-item__info{
+    display: flex;
+    flex-direction: column;
+}
+
+.separator{
+    color: $light-grey;
+}

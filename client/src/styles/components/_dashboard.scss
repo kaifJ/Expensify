@@ -3,8 +3,11 @@
     display: flex;
     flex-direction: column;
     height: 85vh;
-    width: 100vw;
     padding: $m-size;
+    margin: 0 auto;
+    margin: 0 auto;
+    padding: 0 $m-size;
+    max-width: 80rem;
 }
 
 .add-expense-box{
@@ -15,7 +18,6 @@
    margin: $m-size 0 0 0;
    border: $s-size;
    border-width: $xs-size;
-//    background: $light-green;
 }
 
 .filter-component__body{
@@ -45,7 +47,17 @@
 }
 
 .filter-component__form__select{
-    // background-color: $light-green;
+    background-color: $light-grey;
+    &:hover {
+        color: $white;
+        cursor: pointer;
+    }
+    width: 100%;
+    height: 100%;
+}
+
+.filter-component__form__select:disabled{
+    background-color: $light-grey;
     width: 100%;
     height: 100%;
 }
@@ -53,12 +65,28 @@
 .filter-component__form__submit{
     width: 100%;
     height: 95%;
-    color: $white;
-    background: $button-black;
+    background: $light-grey;
     &:hover {
-        color: $hover-color;
+        color: $white;
         cursor: pointer;
     }
+}
+
+.filter-component__sort{
+    padding: $xs-size $xs-size 0 0;
+}
+
+.filter-component__sort__button{
+  margin-right: $xs-size;
+  padding: $xs-size $m-size;
+  text-align: center;
+  display: inline-block;
+  font-size: $m-size;
+  background: $light-grey;
+  &:hover {
+    color: $white;
+    cursor: pointer;
+}
 }
 
 .add-expense-button{
@@ -79,4 +107,42 @@
 .expense-list__box{
     height: 100vh;
     overflow-y: scroll;
+}
+
+.picker {
+    margin-right: $xs-size;
+    grid-column: 5/10;
+    grid-row: 2/4;
+    font-size: $m-size;
+    width: $xxl-size;
+    height: $picker-size;
+    background-color: $light-grey;
+    &:hover{
+        color: $white;
+        cursor: pointer;
+    }
+  
+    input {
+      text-align: center;
+      border: none;
+      background-color: transparent;
+      border-bottom: 2px solid #E3B924;
+    }
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+  
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }

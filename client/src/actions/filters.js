@@ -1,4 +1,16 @@
-import { SORT_FILTERS, RESET_FILTERS, SEARCH_FILTERS } from '../reducers/types'
+import { 
+    SORT_FILTERS, 
+    RESET_FILTERS, 
+    SEARCH_FILTERS,
+    SET_FILTER
+} from '../reducers/types'
+
+export const setFilter = (filters) => dispatch => {
+    dispatch({
+        type: SET_FILTER,
+        payload: {...filters}
+    })
+}
 
 export const sortFilters = ({sortBy, sortIn}) => dispatch => {
     dispatch({

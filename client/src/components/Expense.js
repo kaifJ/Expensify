@@ -11,13 +11,20 @@ const Expense = (props) => {
     }
 
     return (
-       <div style={{backgroundColor: '#D3D3D3'}}>
-        <p>{props.expense.description}</p>
-        <p>{props.expense.amount}</p>
-        <p>{props.expense.category}</p>
-        <p>{moment(props.expense.date).format('ddd MMM DD YYYY')}</p>
-        <button onClick={() => deleteExpense(props.expense._id)}>Delete Expense</button>
-        <Link to={`/edit/${props.expense._id}`}>Edit Expense</Link>
+       <div className="expense-item">
+           <div className="expense-item__box">
+                <div className="expense-item__info">
+                    <label>{`$${props.expense.amount}`}</label>
+                    <label>{props.expense.description}</label>
+                    <label>{props.expense.category}</label>
+                    <label>{moment(props.expense.date).format('ddd MMM DD YYYY')}</label>
+                </div>
+                <div className="expense-item__action__buttons">
+                    <button onClick={() => deleteExpense(props.expense._id)}>Delete Expense</button>
+                    <Link to={`/edit/${props.expense._id}`}>Edit Expense</Link>
+                </div>
+            </div>
+            <hr className="separator" />
        </div>
     )
 }

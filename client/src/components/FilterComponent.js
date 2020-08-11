@@ -3,26 +3,29 @@ import DatePicker from "react-datepicker"
 import * as moment from 'moment'
 import { connect } from 'react-redux'
 import { loadMonthlyExpenses } from '../actions/expense'
-import { sortFilters, searchFilters, resetFilters } from '../actions/filters'
+import { sortFilters, searchFilters, resetFilters, setFilter } from '../actions/filters'
 import "react-datepicker/dist/react-datepicker.css"
 
 const FilterComponent = (props) => {
-    const [startDate, setStartDate] = useState(new Date(props.date))
+    // const [startDate, setStartDate] = useState(new Date(props.date))
     const [filterState, setFilterState] = useState({
         searchText: '',
         searchBy: '',
         selectedCategoryValue: ''
     })
 
-    let {  sortIn } = props.filters
+    let { sortIn, selectedDate, sortBy } = props.filters
     let { searchText, searchBy, selectedCategoryValue } = filterState
 
     let onChangeDate = date => {
+        props.setFilter({
+            selectedDate: moment(date)
+        })
         props.loadMonthlyExpenses({
             year: moment(date).year(), 
             month: moment(date).month()
         })
-        setStartDate(date)
+        // setStartDate(date)
     }
 
     let toggleDateFilter = () => {
@@ -126,15 +129,20 @@ const FilterComponent = (props) => {
                     </div>
                 </form>
                 <div className="filter-component__sort">
-                    <button onClick={toggleDateFilter}>Date</button>
-                    <button onClick={toggleAmountFilter}>Amount</button>
+                    <button className="filter-component__sort__button" onClick={toggleDateFilter}>
+                        Date{(sortBy && sortBy === 'date') ? <span style={{paddingLeft: '5px'}}><i className={sortIn === -1 ? 'arrow up' : 'arrow down'}></i></span> : null}
+                    </button>
+                    <button className="filter-component__sort__button" onClick={toggleAmountFilter}>
+                        Amount{(sortBy && sortBy === 'amount') ? <span style={{paddingLeft: '5px'}}><i className={sortIn === -1 ? 'arrow up' : 'arrow down'}></i></span> : null}
+                    </button>
                     <DatePicker
-                    selected={startDate}
+                    className="picker"
+                    selected={new Date(selectedDate)}
                     onChange={date => onChangeDate(date)}
                     dateFormat="MMM yyyy"
                     showMonthYearPicker
                     />
-                    <button onClick={clearFilters}>Clear All Filters</button>
+                    <button className="filter-component__sort__button" onClick={clearFilters}>Clear All Filters</button>
                 </div>
             </div>
         </div>
@@ -142,8 +150,13 @@ const FilterComponent = (props) => {
 }
 
 const maptStateToProps = state => ({
-    filters: state.filters,
-    date: state.expenses.length > 0 ? moment(state.expenses[0].date) : moment()
+    filters: state.filters
 })
 
-export default connect(maptStateToProps, { loadMonthlyExpenses, sortFilters, searchFilters, resetFilters })(FilterComponent)
+export default connect(maptStateToProps, { 
+    loadMonthlyExpenses, 
+    sortFilters, 
+    searchFilters, 
+    resetFilters,
+    setFilter
+})(FilterComponent)
