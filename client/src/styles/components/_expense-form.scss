@@ -1,23 +1,23 @@
-.box-layout{
-    background-color: $brand-color;
-    align-items: center;
+.expense-form{
     background-size: cover;
     display: flex;
+    flex-direction: column;
     height: 85vh;
-    justify-content: center;
-    width: 100vw;
-    height: 86vh;
+    padding: $m-size;
+    margin: 0 auto;
+    margin: 0 auto;
+    padding: 0 $m-size;
+    max-width: 80rem;
 }
 
-.box-layout__box {
+.expense-form__form{
+    padding: $l-size 0;
     background:$white;
     border-radius: 3px;
-    padding: $l-size $m-size;
-    text-align: center;
-    width: 30rem;
+    width: 40rem;
 }
 
-.form-input{
+.expense-form__input{
     font-family: "Roboto", sans-serif;
     outline: 0;
     background: $form-input-background;
@@ -29,13 +29,31 @@
     font-size: 14px;
 }
 
-.form-button {
+.expense-form__select{
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: $form-input-background;
+    height: $xl-size;
+    width: 90%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    &:hover {
+        color: $white;
+        cursor: pointer;
+    }
+}
+
+.expense-form__button{
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
     background: $button-green;
-    width: 100%;
+    width: 40rem;
     border: 0;
+    margin: 0 0 15px;
     padding: 15px;
     &:hover {
         color: $hover-color;
@@ -44,12 +62,4 @@
     color: $white;
     font-size: 14px;
     transition: opacity 0.2s ease-in;   
-}
-
-.required {
-    color: $red;
-}
-
-.horizontal-box {
-    flex-direction: 'column';
 }

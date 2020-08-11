@@ -1,10 +1,14 @@
 .expense-item{
-    width: 100vw;
+    max-width: 80rem;
 }
 
 .expense-item__box{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    border: $xxs-size solid;
+    background: $light-green;
+    border-radius: $xs-size;
     padding-bottom: $xs-size;
 }
 
@@ -20,4 +24,33 @@
 
 .separator{
     color: $light-grey;
+}
+
+.delete-expense{
+    background: $button-red;
+    color: $white;
+    text-decoration: none;
+    height: 50%;
+    border-radius: $xs-size;
+    &:hover {
+        color: $hover-color;
+        cursor: pointer;
+    }
+}
+
+.edit-expense{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: $xs-size;
+    padding-left: $m-size;
+    background: $button-blue;
+    color: $white;
+    text-decoration: none;
+    height: 50%;
+    border-radius: $xs-size;
+    &:hover {
+        color: $hover-color;
+        cursor: pointer;
+    }
 }

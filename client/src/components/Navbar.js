@@ -30,7 +30,7 @@ const Navbar = ({isAuthenticated, logout}) => {
       );
     return (
         <div className="navbar-box">
-            <div className="navbar-box__content_header">
+            <div className={isAuthenticated ? "navbar-box__content_header" : ""}>
                 <div className="navbar-box__content">
                 <Link to='/dashboard' style={{textDecoration: 'none'}}>
                  <span className="navbar-link__expensify">Expensify</span>

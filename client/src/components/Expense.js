@@ -20,8 +20,8 @@ const Expense = (props) => {
                     <label>{moment(props.expense.date).format('ddd MMM DD YYYY')}</label>
                 </div>
                 <div className="expense-item__action__buttons">
-                    <button onClick={() => deleteExpense(props.expense._id)}>Delete Expense</button>
-                    <Link to={`/edit/${props.expense._id}`}>Edit Expense</Link>
+                    <button className="delete-expense" onClick={() => deleteExpense(props.expense._id)}>Delete Expense</button>
+                    <Link className="edit-expense" to={`/edit/${props.expense._id}`}>Edit Expense</Link>
                 </div>
             </div>
             <hr className="separator" />

@@ -44,75 +44,148 @@ class ExpenseForm extends React.Component{
   render(){
     let formType = this.props.match.url.includes('add') ? 'Add Expense': 'Update Expense'
     return (
-      <Fragment>
-      <form onSubmit={this.onSubmit}>
-      <div>
-         <input
-           type="number"
-           placeholder="Amount"
-           name="amount"
-           required
-           value={this.state.amount}
-           onChange={(e) => this.onChange({name: e.target.name, value: e.target.value})}
-         />
-       </div>
-       <div>
-       <input
-           type="name"
-           placeholder="Note (Food, Shopping)"
-           name="title"
-           value={this.state.title}
-           onChange={(e) => this.onChange({name: e.target.name, value: e.target.value})}
-         />
-       </div>
-       <div>
-         <input
-           type="name"
-           placeholder="Description (Breakfast, Shoes)"
-           name="description"
-           value={this.state.description}
-           onChange={(e) => this.onChange({name: e.target.name, value: e.target.value})}
-         />
-       </div>
-       <div>
-        <label>Category</label>
-        <select
-          name="category"
-          id="category"
-          value={this.state.category || ''}
-          onChange={e =>
-            this.onChange({ name: e.target.name, value: e.target.value })
-          }
-        >
-          <option value="">--Please choose an option--</option>
-          <option value="food">FOOD</option>
-          <option value="social">SOCIAL</option>
-          <option value="self">SELF</option>
-          <option value="transportation">TRANSPORTATION</option>
-          <option value="culture">CULTURE</option>
-          <option value="household">HOUSEHOLD</option>
-          <option value="apparel">APPAREL</option>
-          <option value="beauty">BEAUTY</option>
-          <option value="health">HEALTH</option>
-          <option value="education">EDUCATION</option>
-          <option value="gift">GIFT</option>
-          <option value="other">OTHER</option>
-        </select>
+      <div className="expense-form">
+        <form className="expense-form__form" onSubmit={this.onSubmit}>
+          <div>
+            <input 
+              className="expense-form__input"
+              type="number"
+              placeholder="Amount"
+              name="amount"
+              required
+              value={this.state.amount}
+              onChange={(e) => this.onChange({name: e.target.name, value: e.target.value})}
+            />
+          </div>
+          <div>
+            <input 
+              className="expense-form__input"
+              type="name"
+              placeholder="Note (Food, Shopping)"
+              name="title"
+              value={this.state.title}
+              onChange={(e) => this.onChange({name: e.target.name, value: e.target.value})}
+            />
+          </div>
+          <div>
+            <input 
+              className="expense-form__input"
+              type="name"
+              placeholder="Description (Breakfast, Shoes)"
+              name="description"
+              value={this.state.description}
+              onChange={(e) => this.onChange({name: e.target.name, value: e.target.value})}
+            />
+          </div>
+          <div>
+            <select
+            className="expense-form__select"
+            name="category"
+            id="category"
+            value={this.state.category || ''}
+            onChange={e =>
+              this.onChange({ name: e.target.name, value: e.target.value })
+            }
+          >
+            <option value="">SELECT CATEGORY</option>
+            <option value="food">FOOD</option>
+            <option value="social">SOCIAL</option>
+            <option value="self">SELF</option>
+            <option value="transportation">TRANSPORTATION</option>
+            <option value="culture">CULTURE</option>
+            <option value="household">HOUSEHOLD</option>
+            <option value="apparel">APPAREL</option>
+            <option value="beauty">BEAUTY</option>
+            <option value="health">HEALTH</option>
+            <option value="education">EDUCATION</option>
+            <option value="gift">GIFT</option>
+            <option value="other">OTHER</option>
+          </select>
+          </div>
+          <div>
+            <SingleDatePicker
+              date={this.state.date}
+              onDateChange={date => this.setState({ date })} 
+              focused={this.state.calandarFocused}
+              onFocusChange={({focused}) => this.setState({ calandarFocused: focused })}
+              numberOfMonths={1}
+              isOutsideRange={() => false}
+            />
+          </div>
+          <div>
+           <input className="expense-form__button" type="submit" value={`${formType}`} />
+          </div>
+        </form>
       </div>
-      <div>
-        <label>Date</label>
-        <SingleDatePicker
-          date={this.state.date}
-          onDateChange={date => this.setState({ date })} 
-          focused={this.state.calandarFocused}
-          onFocusChange={({focused}) => this.setState({ calandarFocused: focused })}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />
-      </div>
-       <input type="submit" value={`${formType}`} />
-     </form>
-   </Fragment>
+  //     <div>
+  //     <form onSubmit={this.onSubmit}>
+  //     <div>
+  //        <input
+  //          type="number"
+  //          placeholder="Amount"
+  //          name="amount"
+  //          required
+  //          value={this.state.amount}
+  //          onChange={(e) => this.onChange({name: e.target.name, value: e.target.value})}
+  //        />
+  //      </div>
+  //      <div>
+  //      <input
+  //          type="name"
+  //          placeholder="Note (Food, Shopping)"
+  //          name="title"
+  //          value={this.state.title}
+  //          onChange={(e) => this.onChange({name: e.target.name, value: e.target.value})}
+  //        />
+  //      </div>
+  //      <div>
+  //        <input
+  //          type="name"
+  //          placeholder="Description (Breakfast, Shoes)"
+  //          name="description"
+  //          value={this.state.description}
+  //          onChange={(e) => this.onChange({name: e.target.name, value: e.target.value})}
+  //        />
+  //      </div>
+  //      <div>
+  //       <label>Category</label>
+        // <select
+        //   name="category"
+        //   id="category"
+        //   value={this.state.category || ''}
+        //   onChange={e =>
+        //     this.onChange({ name: e.target.name, value: e.target.value })
+        //   }
+        // >
+        //   <option value="">--Please choose an option--</option>
+        //   <option value="food">FOOD</option>
+        //   <option value="social">SOCIAL</option>
+        //   <option value="self">SELF</option>
+        //   <option value="transportation">TRANSPORTATION</option>
+        //   <option value="culture">CULTURE</option>
+        //   <option value="household">HOUSEHOLD</option>
+        //   <option value="apparel">APPAREL</option>
+        //   <option value="beauty">BEAUTY</option>
+        //   <option value="health">HEALTH</option>
+        //   <option value="education">EDUCATION</option>
+        //   <option value="gift">GIFT</option>
+        //   <option value="other">OTHER</option>
+        // </select>
+  //     </div>
+  //     <div>
+  //       <label>Date</label>
+  //       <SingleDatePicker
+  //         date={this.state.date}
+  //         onDateChange={date => this.setState({ date })} 
+  //         focused={this.state.calandarFocused}
+  //         onFocusChange={({focused}) => this.setState({ calandarFocused: focused })}
+  //         numberOfMonths={1}
+  //         isOutsideRange={() => false}
+  //       />
+  //     </div>
+  //      <input type="submit" value={`${formType}`} />
+  //    </form>
+  //  </div>
   )
   }
 }
