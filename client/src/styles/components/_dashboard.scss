@@ -1,0 +1,82 @@
+.dashboard--box{
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    width: 100vw;
+    padding: $m-size;
+}
+
+.add-expense-box{
+    margin-top: $m-size;
+}
+
+.filter-component__box{
+   margin: $m-size 0 0 0;
+   border: $s-size;
+   border-width: $xs-size;
+//    background: $light-green;
+}
+
+.filter-component__body{
+    display: flex;
+    flex-direction: column;
+    padding: $m-size $m-size $m-size 0;
+}
+
+.filter-component__form{
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-component__form__input{
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: $form-input-background;
+    width: 100%;
+    height: 90%;
+    font-size: $m-size;
+    border: 0;
+    margin: 0 0 $s-size;
+}
+
+.filter-component__form__search__by{
+    padding: 0 $s-size 0 0;
+}
+
+.filter-component__form__select{
+    // background-color: $light-green;
+    width: 100%;
+    height: 100%;
+}
+
+.filter-component__form__submit{
+    width: 100%;
+    height: 95%;
+    color: $white;
+    background: $button-black;
+    &:hover {
+        color: $hover-color;
+        cursor: pointer;
+    }
+}
+
+.add-expense-button{
+    padding: $m-size;
+    text-decoration: none;
+    border: 0;
+    border-radius: $s-size;
+    background: $button-green;
+    width: 200%;
+    height: 200%;
+    color: $white;
+    &:hover {
+        color: $hover-color;
+        cursor: pointer;
+    }
+}
+
+.expense-list__box{
+    height: 100vh;
+    overflow-y: scroll;
+}

@@ -6,6 +6,7 @@ import {
     LOAD_MONTHLY_EXPENSES 
 }  from '../reducers/types'
 import { setAlert } from '../actions/alert'
+import { setLoading } from '../actions/auth'
 import axios from 'axios'
 import * as moment from 'moment'
 
@@ -72,6 +73,7 @@ export const deleteExpense = (id) => async dispatch => {
 }
 
 export const loadExpenses = () => async dispatch => {
+    dispatch(setLoading(true))
     try{
         const params = {
             year: moment().year(),
@@ -79,10 +81,12 @@ export const loadExpenses = () => async dispatch => {
         }
         let res = await axios.get('/api/expense', {params})
         
+        dispatch(setLoading(false))
         dispatch({
             type: LOAD_EXPENSE_SUCCESS,
             payload: { expenses: res.data.expenses }
         })
+        
     }catch(error){
         let errors = error.response.data
         dispatch(setAlert(errors, 'danger'))
@@ -90,17 +94,20 @@ export const loadExpenses = () => async dispatch => {
 }
 
 export const loadMonthlyExpenses = (payload) => async dispatch => {
+    dispatch(setLoading(true))
     try{
         const params = {
             year: payload.year,
             month: payload.month
         }
         let res = await axios.get('/api/expense', {params})
-        
+
+        dispatch(setLoading(false))
         dispatch({
             type: LOAD_MONTHLY_EXPENSES,
             payload: { expenses: res.data.expenses }
         })
+        
     }catch(error){
         let errors = error.response.data
         dispatch(setAlert(errors, 'danger'))

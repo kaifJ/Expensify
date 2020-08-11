@@ -7,8 +7,13 @@
 }
 
 .navbar-link__expensify{
+    padding-left: $s-size;
     color: $white;
     font-size: $l-size;
+    &:hover {
+        color: $hover-color;
+        cursor: pointer;
+    }
 }
 
 .navbar-link{
@@ -16,6 +21,10 @@
     font-size: $l-size;
     float: right;
     padding-right: $m-size;
+    &:hover {
+        color: $hover-color;
+        cursor: pointer;
+    }
 }
 
 .navbar-link__anchor{
@@ -23,5 +32,9 @@
     font-size: $l-size;
     float: right;
     padding-right: $m-size;
+    &:hover {
+        color: $hover-color;
+        cursor: pointer;
+    }
     text-decoration: none;
 }

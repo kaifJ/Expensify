@@ -11,7 +11,7 @@ const Expense = (props) => {
     }
 
     return (
-       <div style={{backgroundColor: ' #add8e6'}}>
+       <div style={{backgroundColor: '#D3D3D3'}}>
         <p>{props.expense.description}</p>
         <p>{props.expense.amount}</p>
         <p>{props.expense.category}</p>

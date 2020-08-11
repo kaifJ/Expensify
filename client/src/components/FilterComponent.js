@@ -62,84 +62,80 @@ const FilterComponent = (props) => {
     }
      
     return (
-        <div style={{backgroundColor: 'red'}}>
-            <div>
-                <form onSubmit={e => onSubmit(e)}>
-                    <input
-                        type="name"
-                        placeholder="Enter Search text here"
-                        name="searchText"
-                        value={searchText}
-                        onChange={e=> onChange(e)}
-                        required
-                    />
-                    <div>
-                        <label>Search In</label>
+        <div className="filter-component__box">
+            <div className="filter-component__body">
+                <form className="filter-component__form" onSubmit={e => onSubmit(e)}>
+                    <div className="filter-component__form__search__by">
                         <select
-                            name="searchBy"
-                            id="searchBy"
-                            value={searchBy}
-                            onChange={e => onChange(e)}
-                            required
+                        className="filter-component__form__select"
+                        name="searchBy"
+                        id="searchBy"
+                        value={searchBy}
+                        onChange={e => onChange(e)}
+                        required
                         >
-                            <option value="">--Please choose an option--</option>
-                            <option value="category">Category</option>
-                            <option value="description">Description</option>
+                        <option value="">Search By</option>
+                        <option value="category">Category</option>
+                        <option value="description">Description</option>
                         </select>
                     </div>
-                    {
-                        searchBy === 'category' && (
-                            <div>
-                                <label>Select Category</label>
-                                <select
-                                    name="category"
-                                    id="category"
-                                    value={selectedCategoryValue}
-                                    required
-                                    onChange={e => {
-                                        setFilterState({
-                                            ...filterState,
-                                            'searchText': e.target.options[e.target.selectedIndex].text,
-                                            'selectedCategoryValue': e.target.value
-                                        })
-                                    }}
-                                >
-                                    <option value="">--Please choose an option--</option>
-                                    <option value="food">FOOD</option>
-                                    <option value="social">SOCIAL</option>
-                                    <option value="self">SELF</option>
-                                    <option value="transportation">TRANSPORTATION</option>
-                                    <option value="culture">CULTURE</option>
-                                    <option value="household">HOUSEHOLD</option>
-                                    <option value="apparel">APPAREL</option>
-                                    <option value="beauty">BEAUTY</option>
-                                    <option value="health">HEALTH</option>
-                                    <option value="education">EDUCATION</option>
-                                    <option value="gift">GIFT</option>
-                                    <option value="other">OTHER</option>
-                                </select>
-                            </div>
-                        )
-                    }
-                    <input type="submit" value="Search" />
+                    <div className="filter-component__form__search__by">
+                    <select
+                        className="filter-component__form__select"
+                        name="category"
+                        id="category"
+                        disabled={searchBy !== 'category'}
+                        value={selectedCategoryValue}
+                        required
+                        onChange={e => {
+                            setFilterState({
+                                ...filterState,
+                                'searchText': e.target.options[e.target.selectedIndex].text,
+                                'selectedCategoryValue': e.target.value
+                            })
+                        }}
+                        >
+                            <option value="">Select Category</option>
+                            <option value="food">FOOD</option>
+                            <option value="social">SOCIAL</option>
+                            <option value="self">SELF</option>
+                            <option value="transportation">TRANSPORTATION</option>
+                            <option value="culture">CULTURE</option>
+                            <option value="household">HOUSEHOLD</option>
+                            <option value="apparel">APPAREL</option>
+                            <option value="beauty">BEAUTY</option>
+                            <option value="health">HEALTH</option>
+                            <option value="education">EDUCATION</option>
+                            <option value="gift">GIFT</option>
+                            <option value="other">OTHER</option>
+                        </select>
+                    </div>
+                    <div className="filter-component__form__search__by">
+                        <input
+                            className="filter-component__form__input"
+                            type="name"
+                            placeholder="Enter Search text here"
+                            name="searchText"
+                            value={searchText}
+                            onChange={e=> onChange(e)}
+                            required
+                        />
+                    </div>
+                    <div className="filter-component__form__search__by">
+                        <input className="filter-component__form__submit" type="submit" value="Filter" />
+                    </div>
                 </form>
-            </div>
-            <div>
-                <button onClick={toggleDateFilter}>Date</button>
-            </div>
-            <div>
-                <button onClick={toggleAmountFilter}>Amount</button>
-            </div>
-            <div>
-                <button onClick={clearFilters}>Clear All Filters</button>
-            </div>
-            <div>
-                <DatePicker
-                selected={startDate}
-                onChange={date => onChangeDate(date)}
-                dateFormat="MM/yyyy"
-                showMonthYearPicker
-                />
+                <div className="filter-component__sort">
+                    <button onClick={toggleDateFilter}>Date</button>
+                    <button onClick={toggleAmountFilter}>Amount</button>
+                    <DatePicker
+                    selected={startDate}
+                    onChange={date => onChangeDate(date)}
+                    dateFormat="MMM yyyy"
+                    showMonthYearPicker
+                    />
+                    <button onClick={clearFilters}>Clear All Filters</button>
+                </div>
             </div>
         </div>
     )

@@ -3,7 +3,8 @@ import {
     LOGIN_SUCCESS,
     LOGOUT,
     REGISTER_FAILURE,
-    REGISTER_SUCCESS
+    REGISTER_SUCCESS,
+    SET_LOADING
  } from '../reducers/types'
  import axios from 'axios'
  import { loadExpenses } from '../actions/expense'
@@ -50,6 +51,10 @@ import {
             type: LOGIN_SUCCESS,
             payload: {token: res.data.token}
         })
+        dispatch({
+            type: SET_LOADING,
+            loading: true
+        })
         dispatch(loadExpenses())
      }catch(error){
          const errorMsg = error.response.data
@@ -70,4 +75,11 @@ import {
     } catch (error) {
         dispatch(setAlert('Could Not Log Out Please check '))
     }
+}
+
+export const setLoading = (loading) => dispatch => {
+    dispatch({
+        type: SET_LOADING,
+        loading
+    })
 }

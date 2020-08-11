@@ -3,7 +3,7 @@
     align-items: center;
     background-size: cover;
     display: flex;
-    height: 80vh;
+    height: 85vh;
     justify-content: center;
     width: 100vw;
 }
@@ -36,11 +36,13 @@
     width: 100%;
     border: 0;
     padding: 15px;
+    &:hover {
+        color: $hover-color;
+        cursor: pointer;
+    }
     color: $white;
     font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
+    transition: opacity 0.2s ease-in;   
 }
 
 .required {

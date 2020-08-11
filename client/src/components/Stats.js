@@ -38,7 +38,7 @@ const Stats = (props) => {
                 <DatePicker
                 selected={startDate}
                 onChange={date => onChangeDate(date)}
-                dateFormat="MM/yyyy"
+                dateFormat="MMM yyyy"
                 showMonthYearPicker
                 />
             </div>
