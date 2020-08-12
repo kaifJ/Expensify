@@ -6,10 +6,23 @@
     width: 30rem;
 }
 
-.alert-success{
+.alert-edit{
+    background: $button-blue;
+    border-radius: 3px;
+    padding: $s-size $s-size;
+    text-align: center;
+    width: 30rem;
+}
 
+.alert-success{
+    background: #4CAF50;
+    border-radius: 3px;
+    padding: $s-size $s-size;
+    text-align: center;
+    width: 30rem;
 }
 
 .alert-label{
-
+    font-family: "Roboto", sans-serif;
+    color: $white;
 }

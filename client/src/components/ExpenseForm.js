@@ -104,6 +104,7 @@ class ExpenseForm extends React.Component{
           </div>
           <div>
             <SingleDatePicker
+              readOnly={true}
               date={this.state.date}
               onDateChange={date => this.setState({ date })} 
               focused={this.state.calandarFocused}

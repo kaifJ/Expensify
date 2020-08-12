@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import CanvasJSReact from '../assets/canvas/canvasjs.react'
 var CanvasJS = CanvasJSReact.CanvasJS
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
@@ -7,15 +7,16 @@ const PieChart = props => {
     let dataPoints = []
 
     for(let [key, percent] of Object.entries(props.categories)){
+        debugger
         dataPoints.push({
             label: key.toUpperCase(),
-            y: percent
+            y: percent.percent
         })
     }
     
     const options = {
         title: {
-          text: "Expenses For The Month"
+          text: `Expenses For The Month:  $${props.total}`
         },
         data: [{				
             type: "pie",
@@ -29,11 +30,11 @@ const PieChart = props => {
          }]
      }
     return (
-        <Fragment>
+        <div class="stats__pie__chart">
             <CanvasJSChart options = {options}
             /* onRef = {ref => this.chart = ref} */
             />
-        </Fragment>
+        </div>
     )
 }
 

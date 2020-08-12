@@ -17,8 +17,14 @@ const Register = ({isAuthenticated, setAlert, register}) => {
 
     let onSubmit = e => {
         e.preventDefault()
-        if(password1 !== password)
+        if(password1 !== password){
           setAlert('Passwords Don\'t match', 'danger')
+          setFormData({
+            ...formData,
+            password: '',
+            password1: ''
+          })
+        }
         else register({name, email, password})
     }
 
@@ -68,6 +74,7 @@ const Register = ({isAuthenticated, setAlert, register}) => {
                   type="password"
                   placeholder="Password"
                   name="password"
+                  minLength="6"
                   required
                   value={password}
                   onChange={e => onChange(e)}

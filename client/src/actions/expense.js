@@ -26,7 +26,7 @@ export const editExpense = (updatedExpense, id, history) => async dispatch => {
             payload: { expense: res.data.expense}
         })
         history.push('/dashboard')
-        dispatch(setAlert('Expense Updated', 'success'))
+        dispatch(setAlert('Expense Updated', 'edit'))
     } catch (error) {
         dispatch(setAlert('Some Error Look into this', 'danger'))
     }
@@ -67,6 +67,7 @@ export const deleteExpense = (id) => async dispatch => {
             type: DELETE_EXPENSE_SUCCESS,
             payload: {id}
         })
+        dispatch(setAlert('Expense Deleted', 'danger'))
     } catch (error) {
         dispatch(setAlert('Some Error Look Into this', 'danger'))
     }

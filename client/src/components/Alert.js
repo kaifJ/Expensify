@@ -6,7 +6,7 @@ const Alert = (props) => {
         <Fragment>
             {props.alerts.map(alert => (
                 <div className={`alert-${alert.alertType}`}>
-                    <label>{alert.msg}</label>
+                    <label className="alert-label">{alert.msg}</label>
                 </div>
             ))}
         </Fragment>

@@ -14,10 +14,10 @@ const Expense = (props) => {
        <div className="expense-item">
            <div className="expense-item__box">
                 <div className="expense-item__info">
-                    <label>{`$${props.expense.amount}`}</label>
-                    <label>{props.expense.description}</label>
-                    <label>{props.expense.category}</label>
-                    <label>{moment(props.expense.date).format('ddd MMM DD YYYY')}</label>
+                    <label className="expense-item__element">{`$${props.expense.amount}`}</label>
+                    <label className="expense-item__element">{props.expense.description}</label>
+                    <label className="expense-item__element">{props.expense.category}</label>
+                    <label className="expense-item__element">{moment(props.expense.date).format('ddd MMM DD YYYY')}</label>
                 </div>
                 <div className="expense-item__action__buttons">
                     <button className="delete-expense" onClick={() => deleteExpense(props.expense._id)}>Delete Expense</button>

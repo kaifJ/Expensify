@@ -38,6 +38,12 @@
     }
 }
 
+.expense-item__element{
+    padding-left: $s-size;
+    font-size: $m-size;
+    font-family: "Roboto", sans-serif;
+}
+
 .edit-expense{
     display: flex;
     flex-direction: row;
@@ -53,4 +59,19 @@
         color: $hover-color;
         cursor: pointer;
     }
+}
+
+.no-items__box{
+    display: flex;
+    flex-direction: row;
+    padding: $s-size 0;
+    background: $hover-color;
+}
+
+.no-items__icon{
+    padding: 0 $s-size 0 0;
+}
+
+.no-items__text{
+    font-family: "Roboto", sans-serif;
 }

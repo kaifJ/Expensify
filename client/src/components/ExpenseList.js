@@ -13,9 +13,12 @@ const ExpenseList = props => {
     )
     if(expenses.length === 0)
     return (
-        <Fragment>
-            No Expenses Get Started
-        </Fragment>
+        <div className="no-items__box">
+            <div className="no-items__icon">
+                <i class="fas fa-box-open"></i>
+            </div>
+            <label className="no-items__text">Nohting Here ! Get Started By Adding an expense</label>
+        </div>
     )
     return (
         <div className="expense-list__box">

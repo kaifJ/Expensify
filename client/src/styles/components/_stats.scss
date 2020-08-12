@@ -1,0 +1,68 @@
+.stats-box{
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    padding: $m-size;
+    margin: 0 auto;
+    margin: 0 auto;
+    padding: 0 $m-size;
+    max-width: 80rem;
+}
+
+.stats__pie__chart{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.stats__list{
+    display: flex;
+    flex-direction: column;
+    padding: $s-size 0;
+    max-width: 80rem;
+}
+
+.stats__list__item{
+    display: flex;
+    flex-direction: row;
+    background: $dark-grey;
+    margin: $xs-size $xs-size;
+    &:hover {
+        cursor: pointer;
+      }
+}
+
+.stats__list__percent__button{
+    margin: $xs-size $xs-size;
+    width: $xl-size;
+    height: $l-size;
+    border-radius: $xs-size;
+    text-align: center;
+    display: inline-block;
+    font-size: $m-size;
+    background: $tomato-red;
+}
+
+.stats__list__percent__text{
+    font-family: "Roboto", sans-serif;
+    margin: $xs-size $xs-size;
+    width: 100%;
+    height: $l-size;
+    font-size: $m-size;
+}
+
+.stats__date__picker{
+    margin: $m-size 0;
+    padding: $s-size $s-size;
+    text-align: center;
+    display: inline-block;
+    font-size: $m-size;
+    background: $light-grey;
+    height: 100%;
+    width: 100%;
+    &:hover {
+      color: $white;
+      cursor: pointer;
+    }
+}
