@@ -99,7 +99,7 @@ const Stats = (props) => {
 
 const maptStateToProps = state => ({
     expenses: state.expenses,
-    date: state.expenses.length > 0 ? moment(state.expenses[0].date) : moment()
+    date: state.filters.selectedDate
 })
 
 export default connect(maptStateToProps, {loadMonthlyExpenses, setFilter})(Stats)

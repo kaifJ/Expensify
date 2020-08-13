@@ -47,6 +47,7 @@ class ExpenseForm extends React.Component{
       <div className="expense-form">
         <form className="expense-form__form" onSubmit={this.onSubmit}>
           <div>
+            <label className="required">*</label>
             <input 
               className="expense-form__input"
               type="number"
@@ -58,6 +59,7 @@ class ExpenseForm extends React.Component{
             />
           </div>
           <div>
+            <label className="not-required">*</label>
             <input 
               className="expense-form__input"
               type="name"
@@ -68,6 +70,7 @@ class ExpenseForm extends React.Component{
             />
           </div>
           <div>
+            <label className="required">*</label>
             <input 
               className="expense-form__input"
               type="name"
@@ -78,6 +81,7 @@ class ExpenseForm extends React.Component{
             />
           </div>
           <div>
+            <label className="required">*</label> 
             <select
             className="expense-form__select"
             name="category"
@@ -103,6 +107,7 @@ class ExpenseForm extends React.Component{
           </select>
           </div>
           <div>
+            <label className="required">*</label>
             <SingleDatePicker
               readOnly={true}
               date={this.state.date}
