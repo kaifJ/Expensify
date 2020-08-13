@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { setAlert } from '../../actions/alert'
 import { register } from '../../actions/auth'
 import { connect } from 'react-redux'
