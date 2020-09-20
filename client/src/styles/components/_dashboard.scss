@@ -1,8 +1,12 @@
+.dashboard--main{
+    background-color: $brand-color;
+}
+
 .dashboard--box{
     background-size: cover;
     display: flex;
     flex-direction: column;
-    height: 85vh;
+    height: 87vh;
     padding: $m-size;
     margin: 0 auto;
     margin: 0 auto;
@@ -96,7 +100,7 @@
     text-decoration: none;
     border: 0;
     border-radius: $s-size;
-    background: $button-green;
+    background: $button-black;
     width: 200%;
     height: 200%;
     color: $white;

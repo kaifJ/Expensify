@@ -6,13 +6,15 @@ import Alert from './Alert'
 
 const Dashboard = () => {
     return (
-        <div className="dashboard--box">
+        <div className="dashboard--main">
+            <div className="dashboard--box">
             <div className="add-expense-box">
                 <Link to='/add' className="add-expense-button">Add Expense</Link>
             </div>
             <Alert />
             <FilterComponent />
             <ExpensesList />
+            </div>
         </div>
     )
 }
